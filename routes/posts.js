@@ -22,11 +22,11 @@ router.get(
   /* 
 #swagger.tags = ['Posts']
 #swagger.description = 'Endpoint get Posts in a specific user'
- #swagger.path = '/posts/{id}'
+ #swagger.path = '/post/{id}'
 #swagger.method = 'GET'
   #swagger.produces = ["application/json"]
 */
-  "/posts/:id",
+  "/post/:id",
   handleErrorAsync(async (req, res, next) =>
     PostsController.getPosts(req, res, next)
   )
@@ -44,7 +44,6 @@ router.post(
   required:true,
   description: "資料格式",
   schema: {
-          "$name": 'Jhon Doe',
           "$tags": 'AAA',
           "$type":  'group',
           "$content":'XXX'
@@ -61,7 +60,7 @@ router.patch(
   /*
 #swagger.tags = ['Posts']
 #swagger.description = 'Endpoint to update Posts'
-#swagger.path = '/posts/{id}'
+#swagger.path = '/post/{id}'
 #swagger.method = 'PATCH'
 #swagger.produces = ["application/json"]
 #swagger.parameters['body'] = {
@@ -77,7 +76,7 @@ router.patch(
      }
  }
 */
-  "/posts/:id",
+  "/post/:id",
   handleErrorAsync(async (req, res, next) =>
     PostsController.updPosts(req, res, next)
   )
@@ -86,25 +85,16 @@ router.delete(
   /*
 #swagger.tags = ['Posts']
  #swagger.description = 'Endpoint to delete Posts '
-#swagger.path = '/posts/{id}'
+#swagger.path = '/post/{id}'
  #swagger.method = 'DELETE'
  #swagger.produces = ["application/json"]
  #swagger.security = [{
          "apiKeyAuth": []
   }]
 */
-  "/posts/:id",
+  "/post/:id",
   handleErrorAsync(async (req, res, next) =>
     PostsController.delPosts(req, res, next)
-  )
-);
-router.delete(
-  /*
-    #swagger.ignore = true
-   */
-  "/posts",
-  handleErrorAsync(async (req, res, next) =>
-    PostsController.delAllPosts(req, res, next)
   )
 );
 

@@ -19,11 +19,15 @@ router.get(
 router.get(
   /* #swagger.tags = ['Users']
      #swagger.description = '取得個人資料'
-      #swagger.path = '/users/{email}'
+      #swagger.path = '/user/profile'
       #swagger.method = 'GET'
       #swagger.produces = ["application/json"]
+       #swagger.security = [{
+         "Bearer": []
+      }]
   */
-  "/users/profile",
+  "/user/profile",
+  auth.isAuth,
   handleErrorAsync(async (req, res, next) =>
     UsersController.getProfile(req, res, next)
   )
@@ -78,7 +82,7 @@ router.post(
 router.patch(
   /*  #swagger.tags = ['Users']
       #swagger.description = '更新個人資料'
-      #swagger.path = '/users/profile'
+      #swagger.path = '/user/profile'
       #swagger.method = 'PATCH'
       #swagger.produces = ["application/json"]
       #swagger.security = [{
@@ -95,7 +99,7 @@ router.patch(
             }
         }
      */
-  "/users/profile",
+  "/user/profile",
   auth.isAuth,
   handleErrorAsync(async (req, res, next) =>
     UsersController.updUser(req, res, next)
@@ -110,23 +114,12 @@ router.delete(
     UsersController.delUser(req, res, next)
   )
 );
-router.delete(
-  /* 
-  #swagger.tags = ['Users']
-  #swagger.description = 'DELETE所有資料(測試用)'
-  #swagger.path = '/users'
-  #swagger.method = 'DELETE'
-  */
-  "/users",
-  handleErrorAsync(async (req, res, next) =>
-    UsersController.delAllUsers(req, res, next)
-  )
-);
+
 // POST：{url}/users/updatePassword: 重設密碼，登入後才可以重設密碼
 router.post(
   /* #swagger.tags = ['Users']
      #swagger.description = '重設密碼'
-     #swagger.path = '/users/updatePassword'
+     #swagger.path = '/user/updatePassword'
      #swagger.method = 'POST'
      #swagger.produces = ["application/json"]
      #swagger.parameters['body'] = {
@@ -142,7 +135,7 @@ router.post(
           "Bearer": []
      }]
   */
-  "/users/updatePassword",
+  "/user/updatePassword",
   auth.isAuth,
   handleErrorAsync(async (req, res, next) =>
     UsersController.updatePassword(req, res, next)

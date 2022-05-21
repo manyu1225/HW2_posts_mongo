@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0.0",
+    "version": "1.0.6",
     "title": "MY API",
     "description": ""
   },
@@ -42,17 +42,9 @@
             "description": "Some description..."
           }
         }
-      },
-      "delete": {
-        "tags": [
-          "Users"
-        ],
-        "description": "DELETE所有資料(測試用)",
-        "parameters": [],
-        "responses": {}
       }
     },
-    "/users/{email}": {
+    "/user/profile": {
       "get": {
         "tags": [
           "Users"
@@ -61,15 +53,53 @@
         "produces": [
           "application/json"
         ],
+        "parameters": [],
+        "responses": {},
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "description": "更新個人資料",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
-            "name": "email",
-            "in": "path",
+            "name": "body",
+            "in": "body",
             "required": true,
-            "type": "string"
+            "description": "資料格式",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Jhon DoeC"
+                },
+                "photo": {
+                  "type": "string",
+                  "example": "https://carolchyang.github.io/nodeFinal/img/login.e25e826d.png"
+                }
+              },
+              "required": [
+                "name",
+                "photo"
+              ]
+            }
           }
         ],
-        "responses": {}
+        "responses": {},
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       }
     },
     "/users/sign_in": {
@@ -151,49 +181,7 @@
         "responses": {}
       }
     },
-    "/users/profile": {
-      "patch": {
-        "tags": [
-          "Users"
-        ],
-        "description": "更新個人資料",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "description": "資料格式",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "example": "Jhon DoeC"
-                },
-                "photo": {
-                  "type": "string",
-                  "example": "https://carolchyang.github.io/nodeFinal/img/login.e25e826d.png"
-                }
-              },
-              "required": [
-                "name",
-                "photo"
-              ]
-            }
-          }
-        ],
-        "responses": {},
-        "security": [
-          {
-            "Bearer": []
-          }
-        ]
-      }
-    },
-    "/users/updatePassword": {
+    "/user/updatePassword": {
       "post": {
         "tags": [
           "Users"
@@ -259,10 +247,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
-                  "type": "string",
-                  "example": "Jhon Doe"
-                },
                 "tags": {
                   "type": "string",
                   "example": "AAA"
@@ -277,7 +261,6 @@
                 }
               },
               "required": [
-                "name",
                 "tags",
                 "type",
                 "content"
@@ -288,7 +271,7 @@
         "responses": {}
       }
     },
-    "/posts/{id}": {
+    "/post/{id}": {
       "get": {
         "tags": [
           "Posts"

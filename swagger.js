@@ -2,12 +2,12 @@ const swaggerAutogen = require("swagger-autogen")();
 
 const doc = {
   info: {
-    version: "1.0.0",
+    version: "1.0.6",
     title: "MY API",
     description: "",
   },
 
-  host: "intense-fortress-59028.herokuapp.com", //"localhost:3000"
+  host: "intense-fortress-59028.herokuapp.com", //""localhost:3000
 
   basePath: "/", // by default: "/"
   schemes: ["https", "http"], //https
