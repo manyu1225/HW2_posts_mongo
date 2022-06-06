@@ -2,12 +2,10 @@ const swaggerAutogen = require("swagger-autogen")();
 
 const doc = {
   info: {
-    version: "1.0.1",
-    title: "REST API",
-    description: "",
+      version: "1.0.1",
+    title: "REST API",    description: "",
   },
-  host: "g11herokuexpress.herokuapp.com", //"localhost:3000", // //"localhost:3000",
-  basePath: "/", // by default: "/"
+"localhost:3000"  basePath: "/", // by default: "/"
   schemes: ["https", "http"], //https
   consumes: [], // by default: ['application/json']
   produces: [], // by default: ['application/json']
