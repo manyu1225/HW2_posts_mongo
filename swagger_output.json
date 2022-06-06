@@ -1,0 +1,369 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.6",
+    "title": "MY API",
+    "description": ""
+  },
+  "host": "intense-fortress-59028.herokuapp.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "使用者 router"
+    },
+    {
+      "name": "Posts",
+      "description": "貼文 router"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": "請加上 JWT TOKEN"
+    }
+  },
+  "paths": {
+    "/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Endpoint to get All Users",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Some description..."
+          }
+        }
+      }
+    },
+    "/user/profile": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "取得個人資料",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {},
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "description": "更新個人資料",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "資料格式",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Jhon DoeC"
+                },
+                "photo": {
+                  "type": "string",
+                  "example": "https://carolchyang.github.io/nodeFinal/img/login.e25e826d.png"
+                }
+              },
+              "required": [
+                "name",
+                "photo"
+              ]
+            }
+          }
+        ],
+        "responses": {},
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/users/sign_in": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "登入",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "資料格式",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "test@gmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "a12345678"
+                }
+              },
+              "required": [
+                "email",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/users/sign_up": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "註冊",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "資料格式",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "HELLOYO"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "test@gmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "a12345678"
+                }
+              },
+              "required": [
+                "name",
+                "email",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/user/updatePassword": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "重設密碼",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "密碼需至少 8 碼以上，並中英混合",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "password": {
+                  "type": "string",
+                  "example": "a123456789"
+                }
+              },
+              "required": [
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {},
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/posts": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "description": "觀看所有動態",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "tags": [
+          "Posts"
+        ],
+        "description": "張貼個人動態",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "資料格式",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "tags": {
+                  "type": "string",
+                  "example": "AAA"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "group"
+                },
+                "content": {
+                  "type": "string",
+                  "example": "XXX"
+                }
+              },
+              "required": [
+                "tags",
+                "type",
+                "content"
+              ]
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/post/{id}": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "description": "Endpoint get Posts in a specific user",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "patch": {
+        "tags": [
+          "Posts"
+        ],
+        "description": "Endpoint to update Posts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "資料格式",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Jhon DoeB"
+                },
+                "tags": {
+                  "type": "string",
+                  "example": "BBB"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "group"
+                },
+                "content": {
+                  "type": "string",
+                  "example": "XXXB"
+                }
+              },
+              "required": [
+                "name",
+                "tags",
+                "type",
+                "content"
+              ]
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "tags": [
+          "Posts"
+        ],
+        "description": "Endpoint to delete Posts ",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {},
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    }
+  }
+}
